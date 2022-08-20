@@ -1,2 +1,2 @@
-export { GetGreeter } from './GetGreeter';
-export { SetGreeter } from './SetGreeter';
+export { Factory } from "./Factory";
+export { NFT } from "./NFT";

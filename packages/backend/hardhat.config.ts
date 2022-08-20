@@ -1,19 +1,63 @@
-import '@nomiclabs/hardhat-waffle';
-import * as dotenv from 'dotenv';
-import { HardhatUserConfig } from 'hardhat/config';
-import 'hardhat-deploy';
-import '@nomiclabs/hardhat-ethers';
-import '@nomiclabs/hardhat-etherscan';
+import "@nomiclabs/hardhat-waffle";
+import * as dotenv from "dotenv";
+import { HardhatUserConfig } from "hardhat/config";
+import "hardhat-deploy";
+import "@nomiclabs/hardhat-ethers";
+import "@nomiclabs/hardhat-etherscan";
+import "hardhat-gas-reporter";
 
-dotenv.config({ path: '../../.env' });
-const defaultNetwork = 'localhost';
+dotenv.config({ path: "../../.env" });
+const defaultNetwork = "localhost";
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
 const config: HardhatUserConfig = {
-  solidity: '0.8.10',
+  solidity: {
+    compilers: [
+      {
+        version: "0.8.13",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+      {
+        version: "0.8.9",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+      {
+        version: "0.8.4",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+      {
+        version: "0.6.7",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+    ],
+  },
   defaultNetwork,
+  gasReporter: {
+    currency: "USD",
+    coinmarketcap: process.env.COINMARKETCAP || "",
+  },
 
   networks: {
     localhost: {
